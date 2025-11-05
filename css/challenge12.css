@@ -1,0 +1,562 @@
+@charset "UTF-8";
+
+/* 私が苦手な考え方 */
+/* 画像は縦横比のどちらかをせっていすればそれに合わせて縦横比を合わせたままサイズ変更
+できるとのことだが、ではなぜobject-fit:coverやobject-fit:contain があるのかいまいち分からない
+(例)h2に対して適当にpadding: 100px 0px;とか、READ MOREに対して
+もしこのやり方ならば、何を基準に数字をつけるべきか*/
+
+/* position(relative,absolute)系使わないで、上下中央のやり方。
+左右中央はコンテンツ自体ならmargin o auto; コンテンツ内の要素ならtext-align:center; */
+
+/* padding: 20px 50px;をheader nav ul
+に書こうと思ったのですが、誤ってheader に書いたのですがそれでもしっかりulの上と右に余白が空いてしまいました。
+→先生添付画像くれた。 */
+
+/* title-answerのクラス名は各質問のタイトルと回答をdivで囲うことにより
+インライン要素で横に並んでた各質問のタイトルと回答をブロック要素で縦書きに分けることが
+できた */
+
+/* 後で字体の優先順位,背景固定の追加設定を決める */
+
+/*-------------------------------------------
+ページ全体
+-------------------------------------------*/
+.memu-container,.about-container,.access-container {
+    width: 1000px;
+    margin: auto;
+    text-align: center;
+    padding : 0px 16px;
+}
+
+h3 {
+    font-size: 2.5em;
+    display:inline-block;
+    border-bottom: solid 5px #e03131;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+body {
+    font-family: "Helvetica Neue", "Arial", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/*-------------------------------------------
+各セクションの縦の余白
+-------------------------------------------*/
+section {
+    margin-top : 20px;
+}
+
+
+/*-------------------------------------------
+header(見出し)
+-------------------------------------------*/
+header {
+    background-image: url(../images/mainvisual.jpg);
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* 携帯で必要なコード */
+    background-position: center;
+    position: relative;
+}
+
+header nav ul {
+    display: flex;
+    justify-content: end;
+    padding: 20px 50px;
+
+}
+
+header li{
+    color: #ffffff;
+    font-weight: bold;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header li:hover {
+    color: #e03131;
+    transition: 0.3s;
+}
+
+h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 .logo2 {
+    display: none;
+}
+
+/*-------------------------------------------
+MENU
+-------------------------------------------*/
+
+h2 {
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto 100vh;
+    background-position: center;
+    color: white;
+    text-align: center;
+    /* padding: 100px(任意の数字) 0px;で
+    適当に上下に目視でh2を中央にしたが
+    このやり方で良いか？数値を決める基準は？ */
+    padding: 100px 0px;
+    font-size: 4.5em;
+}
+
+#menu h2 {
+    background-image: url(../images/menu.jpg);
+}
+
+/* 後ほど各セクションに最大幅1000pxを設定するのではなく一括で設定する方法ありそう
+wrapperみたいな */
+/* .memu-container  {
+    width: 1000px;
+    margin: 0px auto ;
+    text-align: center;
+    padding : 100px 16px;でも良いが
+    余白調整のためいったん4つ書き
+    padding : 100px 16px 100px 16px;
+} */
+
+
+.memu-container {
+    display: flex;
+    justify-content: center;
+}
+
+.coffee-box {
+    border-right: solid 1px black;
+    width: 50%;
+    padding: 0 45px;
+}
+
+.food-other-box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 0 45px;  
+  
+}
+
+dl {
+    display: flex;
+}
+
+dt {
+    width: 300px;
+    text-align: left;
+    border-bottom: dotted 1px black;
+}
+
+
+.coffee-box dt {
+    margin-bottom: 25px;
+}
+
+.coffee-box dd {
+    padding-top: 10px;
+    padding-left:10px;
+}
+
+
+.food-other-box dt {
+    margin-bottom: 30px;
+}
+
+.food-other-box dd {
+    padding-top: 10px;
+    padding-left:10px;
+}
+
+.other {
+    padding-top: 5px;
+}
+
+
+
+/*-------------------------------------------
+about
+-------------------------------------------*/
+#about h2{
+    background-image: url(../images/about.jpg);
+}
+
+
+
+#about .woman-coffee {
+    position: relative;
+    width: 485px;
+    height: 320px;
+    margin: 0 auto;
+}
+
+/* 画像は縦横比のどちらかをせっていすればそれに合わせて縦横比を合わせたままサイズ変更
+できるとのことだが、ではなぜobject-fit:coverやobject-fit:contain があるのかいまいち分からない*/
+#about img {
+    width: 300px;
+}
+
+#about .about-img-1 {
+    position: absolute;
+    top:0px;
+    left: 0px;
+}
+
+#about .about-img-2 {
+    position: absolute;
+    top: 100px;
+    right: 0px;
+    z-index: -1;
+}
+
+#about .read-more {
+    color: #ffffff;
+    background-color: #e03131;
+    width: 150px;
+    /* height: 50px; 高さ50pxは不要とのこと */
+    display: block;
+    text-align: center;
+    padding: 15px 0px;
+    margin: 0 auto;
+    /* オフマウス時のこちらの.read-moreのCSSにも
+    背景色と同じ色のborderを追加して 
+    下にあるACCESS以下の要素が動かないようにした*/
+    border: solid 1px #e03131;
+}
+
+#about .read-more:hover {
+    color: #e03131;
+    border: solid 1px #e03131;
+    background-color: #ffffff;
+    letter-spacing: 2px;
+    transition: 0.7s;
+}
+
+#about ul {
+    /* 縦に4行になっていた物を display: flex;で横並びの4つのブロックにしている*/
+    display: flex;
+    /* ↓liに幅を作ってあげてから折り返しのflex-wrap: wrap;をつける */
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#about li {
+    width: 480px;
+    padding: 20px;
+    text-align: left;
+    /* 行間(デフォが20pxぐらいなので10プラスした30pxで上下に5pxずつ開けた) */
+    line-height: 30px;
+}
+
+
+
+
+/*-------------------------------------------
+access
+-------------------------------------------*/
+#access h2 {
+    background-image: url(../images/access.jpg);
+}
+
+#access iframe {
+    filter: grayscale(100%);
+}
+
+.access-text {
+    margin-top: 10px;
+}
+
+#access p {
+    margin-bottom: 10px;
+    text-align:left;
+}
+
+/*-------------------------------------------
+contact
+-------------------------------------------*/
+#contact h2 {
+    background-image:url(../images/contact.jpg) ;
+    /* contactの画像だけ画像の縦幅小さかったので 
+    background-size: cover;を使用した*/
+    background-size: cover;
+}
+
+#contact form {
+    max-width: 1000px;
+    margin: 0px auto ;
+    text-align: center;
+    /* padding : 100px 16px;でも良いが
+    余白調整のためいったん4つ書き */
+    padding : 50px 16px 50px 16px;
+}
+
+
+#contact .bold {
+    font-weight: bold;
+}
+
+#contact form div {
+    margin: 10px auto;
+}
+
+
+
+
+/* テキストボックスが各項目の下に配置する方法 
+→インライン要素なので横並びになっている。ブロック要素にする*/
+/* 各テキストボックスに    
+display: block;(先生のアドバイス)
+margin:0 auto;をつけた
+→HTMLでtitle-answerで囲えばブロック要素になるので display: block;とmargin:0 auto; */
+
+#contact .text {
+    border: solid 1px black; 
+    width: 80%;
+    /* 入力開始箇所が真ん中からになっていたので
+    text-align: left;をつけて左から入力できるようにした*/
+    text-align: left;
+}
+    
+#contact .email {
+    border: solid 1px black; 
+    width: 80%;
+    /* 入力開始箇所が真ん中からになっていたので
+    text-align: left;をつけて左から入力できるようにした*/
+    text-align: left;    
+}
+
+#contact .pulldown {
+    border: solid 1px black;
+    appearance: button;
+    width: 80%;
+
+
+}
+
+#contact .textarea {
+    border: solid 1px black; 
+    width: 80%;
+    height: 100px;
+    /* 入力開始箇所が真ん中からになっていたので
+    text-align: left;をつけて左から入力できるようにした*/
+    text-align: left;    
+
+}
+
+#contact .submit {
+    color: #ffffff;
+    background-color: #e03131;
+    width: 300px;
+    height: 50px;
+    border: solid 1px black;
+    border-bottom: solid 3px black;
+    margin-top: 20px;
+}
+
+#contact .submit:hover {
+    color: #e03131;
+    background-color: #ffffff;
+    transition: 0.7s;
+}
+
+#contact .submit:active {
+    color: #ffffff;
+    background-color: #e03131;
+    border-bottom: solid 1px black;
+}
+
+
+/* ここでもtext-align: center;かmargin 0 auto;で悩んだ */
+footer {
+    text-align: center;
+    font-size: 0.5em;
+}
+
+@media screen and (max-width: 415px) {
+
+    /*-------------------------------------------
+    ページ全体
+    -------------------------------------------*/
+    .memu-container,.about-container,.access-container {
+        width: 100%;
+    }
+
+    h3 {
+        font-size: 1.5em;
+        margin-bottom: 10%;
+        margin-top: 10%;
+    }
+
+
+    /*-------------------------------------------
+    header(見出し)
+    -------------------------------------------*/
+    
+    h1 {
+        width: 80%;
+    }
+
+    header nav ul {
+        padding: 20px 15px;
+    
+    }
+    
+    h1 .logo1 {
+        display: none;
+    }
+
+    h1 .logo2 {
+        display: block;
+        width: 100%;
+    }
+
+    /*-------------------------------------------
+    MENU
+    -------------------------------------------*/
+    h2 {
+        /* background-sizeを変えた */
+        background-size: cover;
+        padding: 30px;
+        padding: 0.5em 0px;
+        font-size: 2.5em;
+        background-attachment: scroll;
+    }
+
+    .memu-container {
+        flex-direction: column;
+    }
+
+    .coffee-box {
+        border: none;
+        width: 100%;
+        padding: 0px;
+    }
+
+    .coffee-box dd {
+        padding-left:20px;
+    }
+
+    .food-other-box {
+        width: 100%;
+        padding: 0px;    
+    }
+
+    .food-other-box dd {
+        padding-left:20px;
+    }
+
+    /*-------------------------------------------
+    about
+    -------------------------------------------*/
+
+    #about .woman-coffee {
+        width: 100%;
+        height: 300px;
+
+    }
+
+    #about img {
+        width: 280px;
+    } 
+    
+    
+    #about li {
+        padding: 10px;
+    }
+
+    /*-------------------------------------------
+    access
+    -------------------------------------------*/
+    .access-text {
+        margin-top: 20px;
+        margin-bottom: 80px;
+    }
+
+    /*-------------------------------------------
+    contact
+    -------------------------------------------*/
+
+
+    #contact form {
+        max-width: 80%;
+        padding : 40px 16px 40px 16px;
+    }
+
+
+    #contact .submit {
+        width: 120px;
+        height: 50px;
+    }
+
+    footer {
+        margin-bottom: 10px;
+    }
+
+}   
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
